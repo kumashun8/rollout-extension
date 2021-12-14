@@ -3,9 +3,9 @@ import { RolloutWidget } from "argo-rollouts/ui/src/app/components/rollout/rollo
 import { ObjectMeta, TypeMeta } from "argo-rollouts/ui/src/models/kubernetes";
 import { RolloutRolloutInfo } from "argo-rollouts/ui/src/models/rollout/generated";
 
-interface UiBanner {}
+interface ApplicationResourceTree {}
 export const Extension = (props: {
-  tree: UiBanner;
+  tree: ApplicationResourceTree;
 }) => {
   return <h2>HogeHogeHoge</h2>;
 };
