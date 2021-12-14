@@ -2,7 +2,7 @@ import * as React from "react";
 // import { RolloutWidget } from "argo-rollouts/ui/src/app/components/rollout/rollout";
 import { ObjectMeta, TypeMeta } from "argo-rollouts/ui/src/models/kubernetes";
 // import { RolloutRolloutInfo } from "argo-rollouts/ui/src/models/rollout/generated";
-// import { Tooltip } from "argo-ui/src/components/tooltip";
+import { Tooltip } from "argo-ui/src/components/tooltip";
 
 export type State = TypeMeta & { metadata: ObjectMeta } & {
   status: any;
@@ -168,7 +168,23 @@ export const Extension = (props: {
   tree: ApplicationResourceTree;
   resource: State;
 }) => {
-  return <h2>HogeHogeHoge</h2>;
+  return (
+    <Tooltip
+        popperOptions={{
+            modifiers: {
+                preventOverflow: {
+                    enabled: true
+                },
+                hide: {
+                    enabled: false
+                }
+            }
+        }}
+        placement='auto-start'
+        content={<div className='application-labels-tooltip'>hoge</div>}>
+        <div className='application-labels'>hoge</div>
+    </Tooltip>
+);
 };
 
 export const component = Extension;
