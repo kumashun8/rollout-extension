@@ -163,9 +163,9 @@ import { ActionButton } from "argo-ui";
 //   });
 // };
 
-interface ApplicationResourceTree {}
+interface Banner {}
 export const Extension = (props: {
-  tree: ApplicationResourceTree;
+  tree: Banner;
   // resource: State;
 }) => {
   return <ActionButton {...{label: "hoge"}}/>;
