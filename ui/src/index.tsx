@@ -1,13 +1,13 @@
 import * as React from "react";
 // import { RolloutWidget } from "argo-rollouts/ui/src/app/components/rollout/rollout";
-import { ObjectMeta, TypeMeta } from "argo-rollouts/ui/src/models/kubernetes";
+// import { ObjectMeta, TypeMeta } from "argo-rollouts/ui/src/models/kubernetes";
 // import { RolloutRolloutInfo } from "argo-rollouts/ui/src/models/rollout/generated";
 import { ActionButton } from "argo-ui";
 
-export type State = TypeMeta & { metadata: ObjectMeta } & {
-  status: any;
-  spec: any;
-};
+// export type State = TypeMeta & { metadata: ObjectMeta } & {
+//   status: any;
+//   spec: any;
+// };
 
 // const parseInfoFromResourceNode = (
 //   tree: any,
@@ -166,7 +166,7 @@ export type State = TypeMeta & { metadata: ObjectMeta } & {
 interface ApplicationResourceTree {}
 export const Extension = (props: {
   tree: ApplicationResourceTree;
-  resource: State;
+  // resource: State;
 }) => {
   return <ActionButton {...{label: "hoge"}}/>;
 };
