@@ -2,6 +2,7 @@ import * as React from "react";
 import { RolloutWidget } from "argo-rollouts/ui/src/app/components/rollout/rollout";
 import { ObjectMeta, TypeMeta } from "argo-rollouts/ui/src/models/kubernetes";
 import { RolloutRolloutInfo } from "argo-rollouts/ui/src/models/rollout/generated";
+import { Tooltip } from "argo-ui/src/components/tooltip";
 
 export type State = TypeMeta & { metadata: ObjectMeta } & {
   status: any;
@@ -168,7 +169,10 @@ export const Extension = (props: {
   resource: State;
 }) => {
   const ro = parseInfoFromResourceNode(props.tree, props.resource);
-  return <RolloutWidget rollout={ro} />;
+  return (<>
+    <RolloutWidget rollout={ro} />
+    <Tooltip />
+  </>);
 };
 
 export const component = Extension;
