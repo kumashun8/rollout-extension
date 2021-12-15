@@ -59,39 +59,39 @@ const parseInfoFromResourceNode = (
   return ro;
 };
 
-const parseCurrentCanaryStep = (
-  resource: State
-): { currentStep: any; currentStepIndex: number } => {
-  const { status, spec } = resource;
-  const canary = spec.strategy?.canary;
-  if (!canary || canary.steps.length === 0) {
-    return null;
-  }
-  let currentStepIndex = 0;
-  if (status.currentStepIndex) {
-    currentStepIndex = status.currentStepIndex;
-  }
-  if (canary?.steps?.length <= currentStepIndex) {
-    return { currentStep: null, currentStepIndex };
-  }
-  const currentStep = canary?.steps[currentStepIndex];
-  return { currentStep, currentStepIndex };
-};
+// const parseCurrentCanaryStep = (
+//   resource: State
+// ): { currentStep: any; currentStepIndex: number } => {
+//   const { status, spec } = resource;
+//   const canary = spec.strategy?.canary;
+//   if (!canary || canary.steps.length === 0) {
+//     return null;
+//   }
+//   let currentStepIndex = 0;
+//   if (status.currentStepIndex) {
+//     currentStepIndex = status.currentStepIndex;
+//   }
+//   if (canary?.steps?.length <= currentStepIndex) {
+//     return { currentStep: null, currentStepIndex };
+//   }
+//   const currentStep = canary?.steps[currentStepIndex];
+//   return { currentStep, currentStepIndex };
+// };
 
-const parseCurrentSetWeight = (resource: State, currentStepIndex: number): string => {
-  const { status, spec } = resource;
-  if (status.abort) {
-    return "0";
-  }
+// const parseCurrentSetWeight = (resource: State, currentStepIndex: number): string => {
+//   const { status, spec } = resource;
+//   if (status.abort) {
+//     return "0";
+//   }
 
-  for (let i = currentStepIndex; i >= 0; i--) {
-    const step = spec.strategy?.canary?.steps[i];
-    if (step?.setWeight) {
-      return step.setWeight;
-    }
-  }
-  return "0";
-};
+//   for (let i = currentStepIndex; i >= 0; i--) {
+//     const step = spec.strategy?.canary?.steps[i];
+//     if (step?.setWeight) {
+//       return step.setWeight;
+//     }
+//   }
+//   return "0";
+// };
 
 const parseRevision = (rs: any) => {
   for (const item of rs.info || []) {
