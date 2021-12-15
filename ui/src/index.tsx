@@ -17,36 +17,36 @@ const parseInfoFromResourceNode = (
   ro.objectMeta = metadata as any;
   ro.replicaSets = parseReplicaSets(tree, resource);
 
-  if (spec.strategy.canary) {
-    ro.strategy = "Canary";
-    const steps = spec.strategy?.canary?.steps || [];
-    ro.steps = steps;
+  // if (spec.strategy.canary) {
+  //   ro.strategy = "Canary";
+  //   const steps = spec.strategy?.canary?.steps || [];
+  //   ro.steps = steps;
 
-    if (status.currentStepIndex && steps.length > 0) {
-      ro.step = `${status.currentStepIndex}/${steps.length}`;
-    }
+  //   if (status.currentStepIndex && steps.length > 0) {
+  //     ro.step = `${status.currentStepIndex}/${steps.length}`;
+  //   }
 
-    const { currentStep, currentStepIndex } = parseCurrentCanaryStep(resource);
-    ro.setWeight = parseCurrentSetWeight(resource, currentStepIndex);
+  //   const { currentStep, currentStepIndex } = parseCurrentCanaryStep(resource);
+  //   ro.setWeight = parseCurrentSetWeight(resource, currentStepIndex);
 
-    ro.actualWeight = "0";
+  //   ro.actualWeight = "0";
 
-    if (!currentStep) {
-      ro.actualWeight = "100";
-    } else if (status.availableReplicas > 0) {
-      if (!spec.strategy.canary.trafficRouting) {
-        for (const rs of ro.replicaSets) {
-          if (rs.canary) {
-            ro.actualWeight = `${rs.available / status.availableReplicas}`;
-          }
-        }
-      } else {
-        ro.actualWeight = ro.setWeight;
-      }
-    }
-  } else {
-    ro.strategy = "BlueGreen";
-  }
+  //   if (!currentStep) {
+  //     ro.actualWeight = "100";
+  //   } else if (status.availableReplicas > 0) {
+  //     if (!spec.strategy.canary.trafficRouting) {
+  //       for (const rs of ro.replicaSets) {
+  //         if (rs.canary) {
+  //           ro.actualWeight = `${rs.available / status.availableReplicas}`;
+  //         }
+  //       }
+  //     } else {
+  //       ro.actualWeight = ro.setWeight;
+  //     }
+  //   }
+  // } else {
+  ro.strategy = "BlueGreen";
+  // }
 
   ro.containers = [];
   for (const c of spec.template?.spec?.containers) {
